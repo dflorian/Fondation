@@ -18,9 +18,13 @@ deactivate
 
 install flask
 pip install flask
+pip install flask-bootstrap
 
 pip freeze > requirements.txt
 
 run app:
 python3 -m flask run
 
+chrome reload ctrl + shift + R
+shift + F5
+Cmd + shift + R

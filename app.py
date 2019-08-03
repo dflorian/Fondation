@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import render_template
 from datetime import datetime
+from flask_bootstrap import Bootstrap
 import re
 
 app = Flask(__name__)
+Bootstrap(app)
 
 
 @app.route("/")
