@@ -28,3 +28,8 @@ python3 -m flask run
 chrome reload ctrl + shift + R
 shift + F5
 Cmd + shift + R
+
+
+google cloud
+https://cloud.google.com/sdk/docs/
+
