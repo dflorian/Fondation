@@ -33,3 +33,5 @@ Cmd + shift + R
 google cloud
 https://cloud.google.com/sdk/docs/
 
+gcloud app deploy
+gcloud app browse

@@ -19,3 +19,6 @@ def about():
 @app.route("/contact/")
 def contact():
     return render_template("contact.html")
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
