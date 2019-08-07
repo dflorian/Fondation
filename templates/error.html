@@ -1,0 +1,113 @@
+
+{% extends "bootstrap/base.html" %}
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+  {%- block html %}
+    <head>
+      {%- block head %}
+      <title>{% block title %}Landkit{% endblock title %}</title>
+
+        {%- block metas %}   
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {%- endblock metas %}
+
+        {%- block styles %}
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/css/theme.min.css')}}">
+
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/fonts/Feather/feather.css')}}">
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/libs/flickity/dist/flickity.min.css')}}">
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/libs/flickity-fade/flickity-fade.css')}}">
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/libs/aos/dist/aos.css')}}">
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/libs/jarallax/dist/jarallax.css')}}">
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/libs/highlightjs/styles/vs2015.css')}}">
+          <link rel="stylesheet" href="{{url_for('.static', filename='assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css')}}">
+
+          <!-- Map -->
+          <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+          
+        {%- endblock styles %}
+
+        
+      {%- endblock head %}
+    </head>
+    <body{% block body_attribs %}{% endblock body_attribs %}>
+      {% block body -%}
+
+        
+        {% block content -%}
+        <section>
+            <div class="container d-flex flex-column">
+              <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+                <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
+                  
+                  <!-- Heading -->
+                  <h1 class="display-3 font-weight-bold">
+                    Uh Oh.
+                  </h1>
+      
+                  <!-- Text -->
+                  <p class="mb-5 text-muted">
+                    We ran into an issue, but don’t worry, we’ll take care of it for sure.
+                  </p>
+      
+                  <!-- Link -->
+                  <a class="btn btn-primary" href="{{ url_for('home') }}">
+                    Back to safety
+                  </a>
+      
+                </div>
+                <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block">
+      
+                  <!-- Image -->
+                  <div class="h-100 w-cover bg-cover" style="background-image: url(static/assets/img/covers/cover-16.jpg);"></div>
+                  
+                  <!-- Shape -->
+                  <div class="shape shape-left shape-fluid-y svg-shim text-white">
+                    <svg viewBox="0 0 100 1544" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0H100V386L50 1158V1544H0V0Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+      
+                </div>
+              </div> <!-- / .row -->
+            </div> <!-- / .container -->
+          </section>
+
+        {%- endblock content %}
+
+        {% block scripts %}
+
+          <!-- JAVASCRIPT
+          ================================================== -->
+          <!-- Libs JS -->
+
+
+          <script src="{{url_for('.static', filename='assets/libs/jquery/dist/jquery.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/flickity/dist/flickity.pkgd.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/flickity-fade/flickity-fade.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/aos/dist/aos.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/smooth-scroll/dist/smooth-scroll.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/jarallax/dist/jarallax.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/jarallax/dist/jarallax-video.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/jarallax/dist/jarallax-element.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/typed.js/lib/typed.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/countup.js/dist/countUp.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/highlightjs/highlight.pack.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js')}}"></script>
+          <script src="{{url_for('.static', filename='assets/js/theme.min.js')}}"></script>
+          <!-- Theme JS -->
+          <script src="{{url_for('.static', filename='')}}"></script>
+
+          <!-- Map -->
+          <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+        {%- endblock scripts %}
+      {%- endblock body %}
+    </body>
+  {%- endblock html %}
+</html>
+{% endblock doc -%}
+
