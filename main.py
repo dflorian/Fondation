@@ -1,10 +1,11 @@
 from flask import Flask
-from flask import render_template
-from datetime import datetime
+from flask import render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
-import re
+from config import Config
+from contact_form import ContactForm
 
 app = Flask(__name__)
+app.config.from_object(Config)
 Bootstrap(app)
 
 @app.route("/home/")
@@ -16,9 +17,14 @@ def home():
 def about():
     return render_template("about.html")
 
-@app.route("/contact/")
+@app.route("/contact/", methods=['GET', 'POST'])
 def contact():
-    return render_template("contact.html")
+    form = ContactForm()
+    if form.validate_on_submit():
+        flash('Your email has been added to our client database'.format(
+            form.full_name.data, form.email.data))
+        return redirect(url_for('contact'))
+    return render_template("contact.html", title='Contact', form=form)
 
 @app.route("/sandbox/")
 def sandbox():
