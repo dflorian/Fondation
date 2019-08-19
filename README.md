@@ -33,9 +33,9 @@ Cmd + shift + R
 google cloud
 https://cloud.google.com/sdk/docs/
 
-gcloud app deploy
-gcloud app browse
-gcloud app logs tail -s default
+* gcloud app deploy
+* gcloud app browse
+* gcloud app logs tail -s default
 
 
 https://fondation.appspot.com/
