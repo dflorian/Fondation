@@ -26,6 +26,10 @@ def contact():
         return redirect(url_for('contact'))
     return render_template("contact.html", title='Contact', form=form)
 
+@app.route("/faq/")
+def faq():
+    return render_template("faq.html")
+
 @app.route("/sandbox/")
 def sandbox():
     return render_template("sandbox.html")
