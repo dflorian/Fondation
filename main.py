@@ -6,21 +6,8 @@ from flask import Flask
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
-
-mail_settings = {
-    "MAIL_SERVER": 'smtp.gmail.com',
-    "MAIL_PORT": 465,
-    "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": 'snoopy.bollart@gmail.com',
-    "MAIL_PASSWORD": 'YJZ-4DA-zDd-T8H',
-    "MAIL_XAV": 'xavier.bollart@gmail.com',
-    "MAIL_FLO": '',
-    "SECRET_KEY": 'you-will-never-guess',
-}
-
-app.config.update(mail_settings)
+app.config.from_object(Config())
 mail = Mail(app)
-
 Bootstrap(app)
 
 @app.route("/home/")
@@ -64,4 +51,4 @@ def internal_error(error):
     return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host=app.config.get("IP"), port=app.config.get("PORT"), debug=app.config.get("IS_DEBUG"))
