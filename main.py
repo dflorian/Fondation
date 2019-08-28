@@ -1,11 +1,26 @@
-from flask import Flask
 from flask import render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from config import Config
 from contact_form import ContactForm
+from flask import Flask
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
-app.config.from_object(Config)
+
+mail_settings = {
+    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_PORT": 465,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": 'snoopy.bollart@gmail.com',
+    "MAIL_PASSWORD": 'YJZ-4DA-zDd-T8H',
+    "MAIL_XAV": 'xavier.bollart@gmail.com',
+    "MAIL_FLO": '',
+    "SECRET_KEY": 'you-will-never-guess',
+}
+
+app.config.update(mail_settings)
+mail = Mail(app)
+
 Bootstrap(app)
 
 @app.route("/home/")
@@ -21,6 +36,12 @@ def about():
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
+        msg = Message(subject="Hello",
+                      sender=app.config.get("MAIL_USERNAME"),
+                      recipients=[app.config.get("MAIL_XAV"), app.config.get("MAIL_FLO")])
+        msg.body = "client email:" + form.email.data
+        msg.html = "<b>" + "client email:" + form.email.data + "</b>"
+        mail.send(msg)
         flash('Your email has been added to our client database'.format(
             form.full_name.data, form.email.data))
         return redirect(url_for('contact'))

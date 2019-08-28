@@ -1,7 +1,7 @@
-# Fondation
+### Fondation
 Real Estate project
 
-# links
+### links
 
 * https://code.visualstudio.com/docs/python/tutorial-flask
 
@@ -30,7 +30,7 @@ shift + F5
 Cmd + shift + R
 
 
-google cloud
+### google cloud
 https://cloud.google.com/sdk/docs/
 
 * gcloud app deploy
@@ -39,3 +39,6 @@ https://cloud.google.com/sdk/docs/
 
 
 https://fondation.appspot.com/
+
+### flask tuto:
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
