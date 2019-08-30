@@ -16,14 +16,12 @@ source env/bin/activate
 deactivate env:
 deactivate
 
-install flask
-pip install flask
-pip install flask-bootstrap
 
+update requirements
 pip freeze > requirements.txt
 
 run app:
-python3 -m flask run
+flask run
 
 chrome reload ctrl + shift + R
 shift + F5
@@ -42,3 +40,4 @@ https://fondation.appspot.com/
 
 ### flask tuto:
 https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
+https://www.jhanley.com/google-cloud-run-getting-started-with-python-and-flask/

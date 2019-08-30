@@ -1,3 +1,5 @@
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
@@ -10,9 +12,12 @@ class Config(object):
     MAIL_PASSWORD = 'YJZ-4DA-zDd-T8H'
     MAIL_XAV = 'xavier.bollart@gmail.com'
     MAIL_FLO = ''
-    IP = '127.0.0.1'
-    PORT = 8080
-    IS_DEBUG = True
+    APP_IP = '127.0.0.1'
+    APP_PORT = 8080
+    APP_IS_DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+                              'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(Config):

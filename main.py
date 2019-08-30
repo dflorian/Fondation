@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from config import Config
-from contact_form import ContactForm
+from app.contact_form import ContactForm
 from flask import Flask
 from flask_mail import Mail, Message
 
@@ -51,4 +51,4 @@ def internal_error(error):
     return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(host=app.config.get("IP"), port=app.config.get("PORT"), debug=app.config.get("IS_DEBUG"))
+    app.run(host=app.config.get("APP_IP"), port=app.config.get("APP_PORT"), debug=app.config.get("APP_IS_DEBUG"))
