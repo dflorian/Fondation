@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sign In
+{% endblock %}
+
+{% block content %}
+
+    <!-- CONTENT
+    ================================================== -->
+    <section class="section-border border-primary">
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+          <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
+
+            <!-- Heading -->
+            <h1 class="mb-0 font-weight-bold text-center">
+              Sign in
+            </h1>
+
+            <!-- Text -->
+            <p class="mb-6 text-center text-muted">
+              Simplify your workflow in minutes.
+            </p>
+
+            <form class="mb-6" action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+              <!-- Email -->
+              <div class="form-group">
+                <p>
+                    {{ form.username.label }}<br>
+                    {{ form.username(size=32,type="email", class="form-control", id="email", placeholder="name@address.com") }}
+                    {% for error in form.username.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                </p>
+
+              </div>
+
+              <!-- Password -->
+              <div class="form-group mb-5">
+                  <p>
+                    {{ form.password.label }}<br>
+                    {{ form.password(size=32, class="form-control", type="password", id="password", placeholder="Enter your password") }}
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                  </p>
+
+              </div>
+
+                <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+                <p>{{ form.submit(class="btn btn-block btn-primary"  ,href="#!") }}</p>
+
+            </form>
+
+            <!-- Text -->
+            <p class="mb-0 font-size-sm text-center text-muted">
+              Don't have an account yet <a href="{{ url_for('signup')}}" >Sign up</a>.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+{% endblock %}

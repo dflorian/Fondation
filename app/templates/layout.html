@@ -64,30 +64,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('contact')}}" >Contact</a>
                 </li>
+
+                <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarAccount" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('login')}}" >Login</a>
+                  <a class="nav-link" href="{{ url_for('signin')}}" >Sign in</a>
                 </li>
-                 <li class="nav-item">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('signup')}}" >Sign up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="" >Reset password</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('logout')}}" >Logout</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('register')}}" >Register</a>
-                </li>
+              </ul>
+            </li>
               </ul>
             </div>
           </nav>
-        {%- endblock navbar %}
               <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
 
+<!--        {%- endblock navbar %}-->
+
+<!--        {% with messages = get_flashed_messages() %}-->
+<!--        {% if messages %}-->
+<!--        <ul>-->
+<!--            {% for message in messages %}-->
+<!--            <li>{{ message }}</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--        {% endif %}-->
+<!--        {% endwith %}-->
 
 
         {% block content -%}
