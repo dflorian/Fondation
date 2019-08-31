@@ -12,6 +12,7 @@ from app import db
 from app.forms import RegistrationForm
 from app.email import send_first_contact_email
 from datetime import datetime
+from app.forms import EditProfileForm
 
 @app.before_request
 def before_request():
@@ -59,6 +60,23 @@ def user_profile(username):
         {'author': user, 'body': 'received'}
     ]
     return render_template('user_profile.html', user=user, posts=posts)
+
+@app.route('/edit_user_profile', methods=['GET', 'POST'])
+@login_required
+def edit_user_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+   #     flash('Your changes have been saved.')
+        return redirect(url_for('edit_user_profile'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+    return render_template('edit_user_profile.html', title='Edit Profile',
+                           form=form)
+
 
 @app.route('/application')
 @login_required
