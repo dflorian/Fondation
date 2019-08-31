@@ -62,7 +62,7 @@
                   <a class="nav-link" href="{{ url_for('faq')}}">FAQ</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('contact')}}" >Contact</a>
+                  <a class="nav-link" href="" >Contact</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -92,24 +92,35 @@
           </nav>
               <hr>
 
-<!--        {%- endblock navbar %}-->
+        {%- endblock navbar %}
 
-<!--        {% with messages = get_flashed_messages() %}-->
-<!--        {% if messages %}-->
-<!--        <ul>-->
-<!--            {% for message in messages %}-->
-<!--            <li>{{ message }}</li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
-<!--        {% endif %}-->
-<!--        {% endwith %}-->
+        {% block flash -%}
+                {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
 
+        {%- endblock flash %}
 
         {% block content -%}
 
+
+
+
+
+
+
         {%- endblock content %}
 
+
+
         {% block footer %}
+
         
 
         <footer class="py-8 py-md-11 bg-gray-200">

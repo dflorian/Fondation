@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
-from app.contact_form import ContactForm
+#from app.forms import ContactForm
 from app.forms import LoginForm
 from flask_login import current_user, login_user
 from app.models import User
@@ -35,7 +35,7 @@ def signin():
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(first_name=form.first_name.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('signin'))
@@ -69,7 +69,7 @@ def edit_user_profile():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
         db.session.commit()
-   #     flash('Your changes have been saved.')
+        flash('Your changes have been saved.')
         return redirect(url_for('edit_user_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
@@ -83,15 +83,15 @@ def edit_user_profile():
 def listing():
     return render_template("application.html")
 
-@app.route("/contact", methods=['GET', 'POST'])
-def contact():
-    form = ContactForm()
-    if form.validate_on_submit():
-        send_first_contact_email(form.email.data, form.full_name.data)
-        flash('Your email has been added to our client database'.format(
-            form.full_name.data, form.email.data))
-        return redirect(url_for('contact'))
-    return render_template("contact.html", title='Contact', form=form)
+# @app.route("/contact", methods=['GET', 'POST'])
+# def contact():
+#     form = ContactForm()
+#     if form.validate_on_submit():
+#         send_first_contact_email(form.email.data, form.full_name.data)
+#         flash('Your email has been added to our client database'.format(
+#             form.full_name.data, form.email.data))
+#         return redirect(url_for('contact'))
+#     return render_template("contact.html", title='Contact', form=form)
 
 @app.route("/faq")
 def faq():
@@ -103,7 +103,7 @@ def signup():
         return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(first_name=form.first_name.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()

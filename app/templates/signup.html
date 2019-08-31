@@ -19,13 +19,14 @@
 
             <!-- Form -->
             <form class="mb-6" action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
 
               <div class="form-group mb-5">
                 <p>
-                    {{ form.username.label }}
-                    {{ form.username(size=32, class="form-control",placeholder="Full name",type="text",id="contactName") }}
-                    {% for error in form.username.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    {{ form.first_name.label }}
+                    {{ form.first_name(size=32, class="form-control",placeholder="First name",type="text",id="contactName") }}
+                    {% for error in form.first_name.errors %}
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </p>
 
