@@ -11,6 +11,13 @@ from werkzeug.urls import url_parse
 from app import db
 from app.forms import RegistrationForm
 from app.email import send_first_contact_email
+from datetime import datetime
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 @app.route("/home")
 @app.route("/")
@@ -43,10 +50,20 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/listing')
+@app.route('/user_profile/<username>')
+@login_required
+def user_profile(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'rejected'},
+        {'author': user, 'body': 'received'}
+    ]
+    return render_template('user_profile.html', user=user, posts=posts)
+
+@app.route('/application')
 @login_required
 def listing():
-    return render_template("listing.html")
+    return render_template("application.html")
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
