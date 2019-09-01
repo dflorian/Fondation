@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
 #from app.forms import ContactForm
-from app.forms import LoginForm
+from app.forms import SignInForm
 from flask_login import current_user, login_user
 from app.models import User
 from flask_login import logout_user
@@ -9,7 +9,7 @@ from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
-from app.forms import RegistrationForm
+from app.forms import SignUpForm
 from app.email import send_first_contact_email
 from datetime import datetime
 from app.forms import EditProfileForm
@@ -32,14 +32,16 @@ def about():
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if current_user.is_authenticated:
+        #flash('You are already authenticated as:'+ user.first_name +' '+ user.last_name)
         return redirect(url_for('home'))
-    form = LoginForm()
+    form = SignInForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(first_name=form.first_name.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('signin'))
         login_user(user, remember=form.remember_me.data)
+        flash('Welcome'+user.first_name +' '+ user.last_name)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
@@ -51,10 +53,10 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/user_profile/<username>')
+@app.route('/user_profile/<email>')
 @login_required
-def user_profile(username):
-    user = User.query.filter_by(username=username).first_or_404()
+def user_profile(email):
+    user = User.query.filter_by(email=email).first_or_404()
     posts = [
         {'author': user, 'body': 'rejected'},
         {'author': user, 'body': 'received'}
@@ -66,13 +68,15 @@ def user_profile(username):
 def edit_user_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.username = form.username.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_user_profile'))
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
         form.about_me.data = current_user.about_me
     return render_template('edit_user_profile.html', title='Edit Profile',
                            form=form)
@@ -101,9 +105,9 @@ def faq():
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    form = RegistrationForm()
+    form = SignUpForm()
     if form.validate_on_submit():
-        user = User(first_name=form.first_name.data, email=form.email.data)
+        user = User(first_name=form.first_name.data,last_name=form.last_name.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()

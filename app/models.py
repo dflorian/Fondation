@@ -12,6 +12,7 @@ def load_user(id):
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(64), index=True, unique=True)
+    last_name = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
@@ -19,7 +20,7 @@ class User(UserMixin,db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User {}{}>'.format(self.first_name,self.last_name)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
