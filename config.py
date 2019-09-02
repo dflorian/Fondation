@@ -5,8 +5,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = 'you-will-never-guess'
     MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_TSL_PORT = 587
     MAIL_PORT = 465
-    MAIL_USE_TLS = False
+  #  MAIL_USE_TLS = True
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'snoopy.bollart@gmail.com'
     MAIL_PASSWORD = 'YJZ-4DA-zDd-T8H'
@@ -17,13 +18,14 @@ class Config(object):
     APP_IS_DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ADMINS = ['xavier.bollart@gmail.com']
 
 
 class ProductionConfig(Config):
     DATABASE_URI = 'mysql://user@localhost/foo'
 
 class DevelopmentConfig(Config):
-    DEBUG = True
+    APP_IS_DEBUG = False
 
 class TestingConfig(Config):
-    TESTING = True
+    APP_IS_DEBUG = False

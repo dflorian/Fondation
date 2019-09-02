@@ -13,6 +13,9 @@ from app.forms import SignUpForm
 from app.email import send_first_contact_email
 from datetime import datetime
 from app.forms import EditProfileForm
+from app.forms import ResetPasswordRequestForm
+from app.email import send_password_reset_email
+from app.forms import ResetPasswordForm
 
 @app.before_request
 def before_request():
@@ -32,7 +35,7 @@ def about():
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if current_user.is_authenticated:
-        #flash('You are already authenticated as:'+ user.first_name +' '+ user.last_name)
+        flash('already authenticated under login: ' + current_user.email )
         return redirect(url_for('home'))
     form = SignInForm()
     if form.validate_on_submit():
@@ -41,7 +44,7 @@ def signin():
             flash('Invalid username or password')
             return redirect(url_for('signin'))
         login_user(user, remember=form.remember_me.data)
-        flash('Welcome'+user.first_name +' '+ user.last_name)
+        flash('Welcome '+user.first_name + ' ' + user.last_name)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
@@ -104,6 +107,7 @@ def faq():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
+        flash('already authenticated under login: ' + current_user.email )
         return redirect(url_for('home'))
     form = SignUpForm()
     if form.validate_on_submit():
@@ -114,6 +118,36 @@ def signup():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('signin'))
     return render_template('signup.html', title='Sign up', form=form)
+
+
+@app.route('/reset_password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('signin'))
+    return render_template('reset_password_request.html',
+                           title='Reset Password', form=form)
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('home'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset.')
+        return redirect(url_for('signin'))
+    return render_template('reset_password.html', form=form)
 
 @app.errorhandler(404)
 def not_found_error(error):
