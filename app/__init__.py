@@ -1,25 +1,25 @@
 from flask import Flask
 from config import Config,DevelopmentConfig,ProductionConfig,ProductionRemoteConfig
 from flask_bootstrap import Bootstrap
-from flask_mail import Mail
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_login import LoginManager
-import logging
-from logging.handlers import SMTPHandler
-from logging.handlers import RotatingFileHandler
-import os
+# from flask_mail import Mail
+# from flask_sqlalchemy import SQLAlchemy
+# from flask_migrate import Migrate
+# from flask_login import LoginManager
+# import logging
+# from logging.handlers import SMTPHandler
+# from logging.handlers import RotatingFileHandler
+# import os
 
 
 app = Flask(__name__)
-app.config.from_object(ProductionRemoteConfig())
-mail = Mail(app)
+app.config.from_object(DevelopmentConfig())
+#mail = Mail(app)
 Bootstrap(app)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-login = LoginManager(app)
+#db = SQLAlchemy(app)
+#migrate = Migrate(app, db)
+#login = LoginManager(app)
 #
-# from app import routes, models
+from app import routes, models
 #
 # if not app.debug:
 #     if app.config['MAIL_SERVER']:
