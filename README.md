@@ -38,6 +38,7 @@ https://cloud.google.com/sdk/docs/
 * gcloud app deploy
 * gcloud app browse
 * gcloud app logs tail -s default
+* gcloud app logs read
 
 
 https://fondation.appspot.com/
