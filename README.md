@@ -46,3 +46,5 @@ https://fondation.appspot.com/
 * https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 * https://www.jhanley.com/google-cloud-run-getting-started-with-python-and-flask/
 * https://code.visualstudio.com/docs/python/tutorial-flask
+* https://www.jhanley.com/google-cloud-run-getting-started-with-python-and-flask/
+* https://medium.com/@zainqasmi/build-and-deploy-a-python-flask-application-on-google-cloud-using-app-engine-and-cloud-sql-a3c5bde5ef4a

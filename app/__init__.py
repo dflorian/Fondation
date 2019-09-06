@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config,DevelopmentConfig
+from config import Config,DevelopmentConfig,ProductionConfig
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +12,7 @@ import os
 
 
 app = Flask(__name__)
-app.config.from_object(DevelopmentConfig())
+app.config.from_object(ProductionConfig())
 mail = Mail(app)
 Bootstrap(app)
 db = SQLAlchemy(app)
