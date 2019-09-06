@@ -27,7 +27,7 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://admin:admin@/fondation_db?unix_socket=/cloudsql/fondation:us-east1:fondation-db'
 
 class ProductionRemoteConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql://admin:admin@127.0.0.1:3307/fondation_db'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://admin:admin@127.0.0.1:3307/fondation_db'
 
 class DevelopmentConfig(Config):
     APP_IS_DEBUG = False

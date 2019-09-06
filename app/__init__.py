@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config,DevelopmentConfig,ProductionConfig
+from config import Config,DevelopmentConfig,ProductionConfig,ProductionRemoteConfig
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
