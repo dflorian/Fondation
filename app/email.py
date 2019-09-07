@@ -23,7 +23,7 @@ def send_password_reset_email(user):
                html_body=render_template('email/reset_password.html', user=user, token=token))
 
 def send_first_contact_email(email, name, message):
-    send_email('[Fondation] welcome',
+    send_email('[Fondation] New Message',
                sender=app.config.get("MAIL_USERNAME"),
                recipients=[app.config.get("MAIL_XAV"), app.config.get("MAIL_FLO")],
                text_body=render_template('email/contact_us.txt', email=email, name=name, message=message),

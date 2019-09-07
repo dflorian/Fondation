@@ -70,18 +70,22 @@
                 Account
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                {% if not current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('signin')}}" >Sign in</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('signup')}}" >Sign up</a>
                 </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('user_profile', email=current_user.email)}}" >Profile</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('logout')}}" >Logout</a>
                 </li>
+                {% endif %}
               </ul>
             </li>
               </ul>
