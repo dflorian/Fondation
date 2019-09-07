@@ -83,6 +83,16 @@
                   <a class="nav-link" href="{{ url_for('user_profile', email=current_user.email)}}" >Profile</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('pre_approval', email=current_user.email)}}" >Get approved</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('pre_application', email=current_user.email)}}" >Apply to a property</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('dashboard', email=current_user.email)}}" >Dashboard</a>
+                </li>
+
+                <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('logout')}}" >Logout</a>
                 </li>
                 {% endif %}

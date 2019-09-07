@@ -55,6 +55,8 @@ def logout():
 @app.route('/user_profile/<email>')
 @login_required
 def user_profile(email):
+    if not current_user.is_authenticated:
+        return redirect(url_for('signin'))
     user = User.query.filter_by(email=email).first_or_404()
     posts = [
         {'author': user, 'body': 'rejected'},
@@ -65,6 +67,8 @@ def user_profile(email):
 @app.route('/edit_user_profile', methods=['GET', 'POST'])
 @login_required
 def edit_user_profile():
+    if not current_user.is_authenticated:
+        return redirect(url_for('signin'))
     form = EditProfileForm()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data
@@ -81,10 +85,21 @@ def edit_user_profile():
                            form=form)
 
 
-@app.route('/application')
+@app.route('/pre_approval')
+def pre_approval():
+    if not current_user.is_authenticated:
+        return redirect(url_for('signin'))
+    return render_template("pre_approval.html")
+
+@app.route('/pre_application')
 @login_required
-def listing():
-    return render_template("application.html")
+def pre_application():
+    return render_template("pre_application.html")
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template("dashboard.html")
 
 @app.route("/contact_us", methods=['GET', 'POST'])
 def contact_us():
