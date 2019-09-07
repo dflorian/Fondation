@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block title %}
+Contact us
+{% endblock %}
+{% block content %}
+    <!-- FORM
+    ================================================== -->
+    <section class="pt-8 pt-md-11 pb-8 pb-md-14">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+
+            <!-- Heading -->
+            <h2 class="font-weight-bold">
+              Let us hear from you directly!
+            </h2>
+
+            <!-- Text -->
+            <p class="font-size-lg text-muted mb-7 mb-md-9">
+              We always want to hear from you! Let us know how we can best help you and we'll do our very best.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-12 col-lg-10">
+
+            <!-- Form -->
+            <form action="" method="post" novalidate>
+                 {{ form.hidden_tag() }}
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="form-group mb-5">
+
+                  <p>
+                    {{ form.full_name.label }}
+                    {{ form.full_name(size=32, class="form-control",placeholder="Full name",type="text",id="FullName") }}
+                    {% for error in form.full_name.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                  </p>
+
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="form-group mb-5">
+                  <p>
+                  {{ form.email.label }}
+                  {{ form.email(size=64, type="email", class="form-control", id="email", placeholder="hello@domain.com") }}
+                  {% for error in form.email.errors %}
+                  <span style="color: red;">{{ error }}</span>
+                  {% endfor %}
+                  </p>
+                  </div>
+                </div>
+              </div> <!-- / .row -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group mb-7 mb-md-9">
+
+                  <p>
+                    {{ form.message.label }}
+                    {{ form.message( class="form-control",rows="5",placeholder="Tell us what we can help you with!",type="text",id="Message") }}
+                    {% for error in form.message.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                  </p>
+
+                  </div>
+                </div>
+              </div> <!-- / .row -->
+              <div class="row justify-content-center">
+                <div class="col-auto">
+
+                  <!-- Submit -->
+                  <p>{{ form.submit(class="btn btn-block btn-primary" ,href="#!") }}</p>
+
+                </div>
+              </div> <!-- / .row -->
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+{% endblock %}

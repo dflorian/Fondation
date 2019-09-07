@@ -5,18 +5,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = 'you-will-never-guess'
     MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_TSL_PORT = 587
     MAIL_PORT = 465
-  #  MAIL_USE_TLS = True
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'snoopy.bollart@gmail.com'
     MAIL_PASSWORD = 'YJZ-4DA-zDd-T8H'
     MAIL_XAV = 'xavier.bollart@gmail.com'
-    MAIL_FLO = ''
+    MAIL_FLO = 'fdoumenc@gmail.com'
     APP_IP = '127.0.0.1'
     APP_PORT = 8080
-
-
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ADMINS = ['xavier.bollart@gmail.com']
 

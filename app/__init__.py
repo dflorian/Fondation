@@ -12,7 +12,7 @@ import os
 
 
 app = Flask(__name__)
-app.config.from_object(ProductionConfig())
+app.config.from_object(DevelopmentConfig())
 mail = Mail(app)
 Bootstrap(app)
 db = SQLAlchemy(app)

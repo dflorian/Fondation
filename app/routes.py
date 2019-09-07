@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
-#from app.forms import ContactForm
+from app.forms import ContactForm
 from app.forms import SignInForm
 from flask_login import current_user, login_user
 from app.models import User
@@ -27,10 +27,6 @@ def before_request():
 @app.route("/")
 def home():
     return render_template("home.html")
-
-@app.route("/about")
-def about():
-    return render_template("about.html")
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
@@ -89,17 +85,15 @@ def edit_user_profile():
 @login_required
 def listing():
     return render_template("application.html")
-#
-# # @app.route("/contact", methods=['GET', 'POST'])
-# # def contact():
-# #     form = ContactForm()
-# #     if form.validate_on_submit():
-# #         send_first_contact_email(form.email.data, form.full_name.data)
-# #         flash('Your email has been added to our client database'.format(
-# #             form.full_name.data, form.email.data))
-# #         return redirect(url_for('contact'))
-# #     return render_template("contact.html", title='Contact', form=form)
 
+@app.route("/contact_us", methods=['GET', 'POST'])
+def contact_us():
+    form = ContactForm()
+    if form.validate_on_submit():
+        send_first_contact_email(form.email.data, form.full_name.data, form.message.data)
+        flash('Your has been sent. We will get back to you shortly')
+        return redirect(url_for('contact_us'))
+    return render_template("contact_us.html", title='Contact', form=form)
 @app.route("/faq")
 def faq():
     return render_template("faq.html")

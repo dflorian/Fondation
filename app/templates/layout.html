@@ -62,7 +62,7 @@
                   <a class="nav-link" href="{{ url_for('faq')}}">FAQ</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="" >Contact</a>
+                  <a class="nav-link" href="{{ url_for('contact_us')}}" >Contact us</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -78,9 +78,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('user_profile', email=current_user.email)}}" >Profile</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="" >Reset password</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('logout')}}" >Logout</a>

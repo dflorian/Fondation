@@ -47,7 +47,7 @@
                 {{ form.email.label }}
                 {{ form.email(size=64, type="email", class="form-control", id="email", placeholder="name@address.com") }}
                 {% for error in form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <span style="color: red;">{{ error }}</span>
                 {% endfor %}
                 </p>
 
@@ -59,7 +59,7 @@
                     {{ form.password.label }}
                     {{ form.password(size=32,type="password", class="form-control", id="password", placeholder="Enter your password") }}
                     {% for error in form.password.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </p>
               </div>
@@ -70,7 +70,7 @@
                     {{ form.password2.label }}
                     {{ form.password2(size=32, type="password", class="form-control", id="password", placeholder="Enter your password") }}
                     {% for error in form.password2.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </p>
 

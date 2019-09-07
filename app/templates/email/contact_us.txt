@@ -1,0 +1,8 @@
+Message received from Fondation
+
+name: {{ name }}
+email: {{ email }}
+message: {{ message }}
+
+Sincerely,
+The Fondation Team

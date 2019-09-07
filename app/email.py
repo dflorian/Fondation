@@ -22,9 +22,9 @@ def send_password_reset_email(user):
                text_body=render_template('email/reset_password.txt', user=user, token=token),
                html_body=render_template('email/reset_password.html', user=user, token=token))
 
-def send_first_contact_email(email, name):
+def send_first_contact_email(email, name, message):
     send_email('[Fondation] welcome',
                sender=app.config.get("MAIL_USERNAME"),
                recipients=[app.config.get("MAIL_XAV"), app.config.get("MAIL_FLO")],
-               text_body=render_template('email/new_contact.txt', email=email, name=name),
-               html_body=render_template('email/new_contact.html', email=email, name=name))
+               text_body=render_template('email/contact_us.txt', email=email, name=name, message=message),
+               html_body=render_template('email/contact_us.html', email=email, name=name, message=message))

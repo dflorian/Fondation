@@ -1,6 +1,0 @@
-Dear {{ name }},
-
-
-we added your email: {{ email }} to our client database.
-Sincerely,
-The Fondation Team

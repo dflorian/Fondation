@@ -13,7 +13,7 @@ class SignUpForm(FlaskForm):
     first_name = StringField('First name', validators=[DataRequired()])
     last_name = StringField('Last name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(),Length(min=6)])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('SignUp')
@@ -34,7 +34,14 @@ class ResetPasswordRequestForm(FlaskForm):
     submit = SubmitField('Request Password Reset')
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(),Length(min=6)])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
+
+
+class ContactForm(FlaskForm):
+    full_name = StringField('Fullname', validators=[DataRequired()])
+    message = TextAreaField('What can we help you with?', validators=[DataRequired(),Length(min=6),Length(max=300)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Send')
